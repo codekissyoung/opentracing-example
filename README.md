@@ -2,19 +2,21 @@
 
 ## Building
 
-
 Make sure that you have Go installed, then run `go build`. If you are missing
-dependencies, run `go get ./...`. Alternatively, you can build the application
-using docker by running `scripts/docker_build.sh`.
+dependencies, run `go get ./...`. 
+
+Alternatively, you can build the application using docker by running `scripts/docker_build.sh`.
 
 ## Running
 This is a trivial example app that demonstrates how OpenTracing can be
 used with!
 
-To run the program, run `./opentracing-example`. This will, by default,
-start a new Appdash server and write all of your traces to it. However,
-if you want to use a different tracer system, i.e. LightStep, all you have
-to do is pass the flag `--lightstep.token=ACCESS_TOKEN`.
+To run the program, run `./opentracing-example`. This will, 
+by default,
+start a new Appdash server and write all of your traces to it. 
+However,
+if you want to use a different tracer system, 
+i.e. LightStep, all you have to do is pass the flag `--lightstep.token=ACCESS_TOKEN`.
 
 ### Docker
 A prebuilt docker image already exists. Run
@@ -29,8 +31,8 @@ addresses at, i.e. `123.45.67.123:8700/traces`.
 
 # Screenshots
 ### Appdash
-![alt text](/assets/appdash.png)
+![alt text](./assets/appdash.png)
 
 ### Lightstep
-![Lightstep](/assets/lightstep.png)
+![Lightstep](./assets/lightstep.png)
 
