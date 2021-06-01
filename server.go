@@ -13,14 +13,21 @@ import (
 func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(`<a href="/home"> Click here to start a request </a>`))
 }
+
 func homeHandler(w http.ResponseWriter, r *http.Request) {
+
 	w.Write([]byte("Request started"))
+
 	sp := opentracing.StartSpan("GET /home") // Start a new root span.
 	defer sp.Finish()
 
-	asyncReq, _ := http.NewRequest("GET", "http://localhost:8080/async", nil)
+	asyncReq, err := http.NewRequest("GET", "http://localhost:8080/async", nil)
+	if err != nil {
+		log.Fatalf("%s: New Request Failed (%v)", r.URL.Path, err)
+	}
+
 	// Inject the trace information into the HTTP Headers.
-	err := sp.Tracer().Inject(sp.Context(), opentracing.TextMap, opentracing.HTTPHeadersCarrier(asyncReq.Header))
+	err = sp.Tracer().Inject(sp.Context(), opentracing.TextMap, opentracing.HTTPHeadersCarrier(asyncReq.Header))
 	if err != nil {
 		log.Fatalf("%s: Couldn't inject headers (%v)", r.URL.Path, err)
 	}

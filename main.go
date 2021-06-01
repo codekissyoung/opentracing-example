@@ -8,7 +8,6 @@ import (
 
 	lightstepot "github.com/lightstep/lightstep-tracer-go"
 	"github.com/opentracing/opentracing-go"
-
 	"sourcegraph.com/sourcegraph/appdash"
 	appdashot "sourcegraph.com/sourcegraph/appdash/opentracing"
 )
@@ -20,8 +19,8 @@ var (
 )
 
 func main() {
-	flag.Parse()
 
+	flag.Parse()
 	var tracer opentracing.Tracer
 
 	// Would it make sense to embed Appdash?
